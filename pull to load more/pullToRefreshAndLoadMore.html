@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="x5-fullscreen" content="true">
+	<!-- <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+	<title>上拉加载，下拉刷新</title>
+	<script src="js/flexible.js"></script>
+	<script src="js/iscroll-probe.js"></script>
+	<style type="text/css">
+		body {padding: 0; margin: 0; }
+		ul {list-style: none; margin: 0; padding-left: 0.4rem; } 
+		li {height: 1.333333rem; line-height: 1.333333rem; border-bottom: 1px solid rgba(0,0,0,.1); color: #4a4a4a; font-size: 15px; }
+		.container {position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
+		.section-page{position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 2; overflow: auto; -webkit-overflow-scrolling: touch; }
+		.list-w {height: 100%; overflow: hidden; }
+		.scroller-op {display: none; position: relative; height: 1rem; text-align: center; background: rgba(0, 0, 0, 0.5); color: #fff; }
+		.loading-tip {display: inline-block; height: 1rem; line-height: 1rem; vertical-align: top; letter-spacing: 1px; }
+		/* loading */
+			.loader {position: relative; display: inline-block; width: .7rem; height: 1rem; }
+			.loader .arc {position: absolute; width: 100%; height: 100%; }
+			.loader .arc::before, .loader .arc::after {content: ''; position: absolute; top: 50%; left: 50%; border: 0.04rem solid; border-radius: 50%; width: 0.4rem; height: 0.4rem; margin-top: -0.22rem; margin-left: -0.22rem; }
+			.loader .arc::before {border-color: #FFF; opacity: .3; }
+			.loader .arc::after {
+			    border-color: transparent;
+			    border-bottom-color: #FFF;
+			    -webkit-animation: rotate .8s infinite linear;
+			            animation: rotate .8s infinite linear;
+			}
+			@-webkit-keyframes rotate {
+			    100% {-webkit-transform: rotate(360deg); transform: rotate(360deg); } 
+			}
+
+			@keyframes rotate {
+			    100% {-webkit-transform: rotate(360deg); transform: rotate(360deg); } 
+			}
+
+			[data-dpr="2"] li {font-size: 30px;}
+			[data-dpr="3"] li {font-size: 45px;}
+		/* loading end */
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="section-page">
+			<div id="wrapper" class="list-w">
+		        <div id="scroller">
+		            <div class="scroller-op scroller-pullDown" id="pullDown">
+		                <div class="loader">
+		                    <div class="arc"></div>
+		                </div>
+		                <span class="loading-tip">下拉刷新</span>
+		            </div>
+		            <div class="scroller-content" id="content">
+		                <ul></ul>
+		            </div>
+		            <div class="scroller-op scroller-pullUp" id="pullUp">
+		                <div class="loader">
+		                    <div class="arc"></div>
+		                </div>
+		                <span class="loading-tip">数据加载中</span>
+		            </div>
+		            <!-- <div class="scroller-op" style="display: block" id="pullTip">
+		                <span class="loading-tip">已加载全部数据</span>
+		            </div> -->
+		        </div>
+		    </div>	
+		</div>
+	</div>
+</body>
+<script>
+	window.onload = function() {
+		// 常量申明
+		var doc = document,
+			id = 'getElementById',
+			tag = 'getElementsByTagName',
+			model = {
+				page: 1,
+				size: 20,
+				list: []
+			};
+		// 工具函数
+		var util = {
+			counter: 0,
+			showLoading: function(el) {
+				el.style.display = 'block';
+			},
+			hideLoading: function(el) {
+				el.style.display = 'none';
+			},
+			mockAjax: function(param, cb) {
+				// 请求参数
+				var param = param || {};
+				// page: 当前页，size: 一次加载多少条
+				var size = param.size || model.size,
+					page = param.page || model.page;
+				var arr = [];
+				var i = (( page - 1 ) * size) + 1;
+				this.counter = i;
+				for ( ; i <= size * page; i++) {
+					var obj = {val: this.counter};
+					// 每次迭代1
+					this.counter += 1;
+					arr.push(obj);
+				}
+
+				// 模拟异步800ms的延时
+				setTimeout(function() {
+					cb && cb(arr);
+				}, 800);
+			},
+			setModel: function(obj) {
+				model = Object.assign({}, model, obj || {});
+				this.render(model.list);
+			},
+			render: function(data) {
+				/**
+				 * [data 数据结构（可自行修改）]
+				 * data: {
+				 * 		list: [
+				 * 			{val: xxx},
+				 * 			{val: xxx}
+				 * 		]
+				 * }
+				 * 
+				 */
+				var ul = doc[id]('content')[tag]('ul')[0];
+				var domstr = data.map(function(el, index) {
+					return '<li><span>'+ el.val +'</span></li>';
+				}).join('');
+
+				ul.innerHTML = domstr;
+				myScroll.refresh();
+			}
+		};
+
+		// 列表初始化
+		var init = function (cb) {
+			util.mockAjax({page: 1}, function(listData) {
+				var newModel = {list: listData};
+				util.setModel(newModel);
+				cb && cb();
+			});
+		};
+
+		init();
+
+		// scroll 对象初始化
+		var myScroll = new IScroll('#wrapper', {
+	            scrollbars: true,
+	            probeType: 1,
+	            fadeScrollbars: true
+	        });
+		// 监听滚动事件
+        myScroll.on('scroll', function(){
+        	// 下拉刷新
+            if (this.y > 50) {
+                util.showLoading(doc[id]('pullDown'));
+               	init(function() {
+               		util.hideLoading(doc[id]('pullDown'));
+                	util.setModel({page: 1});
+                });
+            } else {
+                util.hideLoading(doc[id]('pullDown'));
+            }
+        });
+        // 监听滚动停止事件
+        myScroll.on('scrollEnd', function(){
+            if (this.scrollerHeight === this.wrapperHeight) return;
+            // 上拉加载
+            if (this.y - this.maxScrollY < 50) {
+                util.showLoading(doc[id]('pullUp'));
+                myScroll.refresh();
+                myScroll.scrollTo(0, myScroll.maxScrollY, 0);
+
+                util.mockAjax({
+                	page: model.page + 1
+                }, function(listData) {
+                	var newModel = {list: model.list.concat(listData), page: model.page + 1};
+                	util.hideLoading(doc[id]('pullUp'));
+                	util.setModel(newModel);
+               	});
+
+            } else {
+                util.hideLoading(doc[id]('pullUp'));
+            }
+        });
+	};
+</script>
+</html>
