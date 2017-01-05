@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flv test</title>
+</head>
+<body>
+	<video id="video"></video>
+</body>
+<script src="node_modules/flv.js/dist/flv.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function(){
+	    if (flvjs.isSupported()) {
+	        var videoElement = document.getElementById('video');
+	        var flvPlayer = flvjs.createPlayer({
+	            type: 'flv',
+	            url: '/1.flv'
+	        });
+	        flvPlayer.attachMediaElement(videoElement);
+	        flvPlayer.load();
+	        flvPlayer.play();
+	    }
+	});
+</script>
+</html>
