@@ -6,6 +6,7 @@
 * table template.
 * pull up to load more and pull down to refresh. 
 * flvjs. 
+* redux basic demo without bundler and just used in browser. 
 
 
 
