@@ -9,4 +9,5 @@
 * redux basic demo without bundler and just used in browser. 
 
 
-
+## todo
+* react router transition, react motion
