@@ -1,0 +1,16 @@
+{
+  "name": "demo1",
+  "version": "1.0.0",
+  "description": "popmotion",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.5.1",
+    "popmotion": "^8.1.9"
+  }
+}
