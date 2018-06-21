@@ -7,7 +7,9 @@
 * pull up to load more and pull down to refresh. 
 * flvjs. 
 * redux basic demo without bundler and just used in browser. 
-* socket.io chatting room
+* socket.io chatting room.
+* antd 省市区联动选择.
+* antd component jest demo (官方parcel antd 配置).
 
 
 ## todo
@@ -16,3 +18,5 @@
 * dva
 * ava
 * css module
+* react_china_division readme.md
+* antd_component_jest readme.md
