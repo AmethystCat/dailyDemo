@@ -1,5 +1,5 @@
 # dailyDemo
-##when i'm free,i write something here
+## when I'm free, I write something here.
 
 * element zoomIn.
 * login template.
