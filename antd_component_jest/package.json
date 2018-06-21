@@ -1,0 +1,26 @@
+{
+  "name": "antd_component_jest",
+  "version": "1.0.0",
+  "description": "antd components jest practice",
+  "main": "index.js",
+  "author": "hc",
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/parcel index.html --no-cache",
+    "test": "jest --config jest.json"
+  },
+  "dependencies": {
+    "antd": "^3.6.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.8.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^23.1.0",
+    "less": "^2.7.2",
+    "parcel-bundler": "^1.9.2",
+    "react-test-renderer": "^16.4.1"
+  }
+}

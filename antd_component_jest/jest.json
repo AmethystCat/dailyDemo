@@ -1,0 +1,20 @@
+{
+  "collectCoverage": true,
+  "collectCoverageFrom" : ["src/**/*.{js,jsx}"],
+  "coverageDirectory": "coverage",
+  "moduleFileExtensions": ["js", "json", "jsx"],
+  "moduleDirectories": ["node_modules", "src", "test", "mock"],
+  "coverageReporters": ["html", "text"],
+  "setupFiles": ["./test/setup.js"],
+  "verbose": true,
+  "notify": true,
+  "timers": "fake",
+  "globals": {
+    "__DEV__": true,
+    "__HOST__": true
+  },
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
+    "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
+  }
+}

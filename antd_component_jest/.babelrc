@@ -1,0 +1,17 @@
+{
+  "presets": ["env", "react"],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "import",
+          {
+            "libraryName": "antd",
+            "libraryDirectory": "es",
+            "style": true
+          }
+        ]
+      ]
+    }
+  }
+}
