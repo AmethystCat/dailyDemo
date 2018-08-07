@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>page 2</title>
+</head>
+<body>
+  我是page 2, 我要给其他域的page 1页面发消息
+  <button id="btn" type="button">post message</button> 
+</body>
+<script>
+  var btn = document.querySelector('#btn');
+  btn.onclick = function() {
+    console.log('page2 的button点击了');
+    window.top.postMessage({page: 'mine'}, 'http://localhost:3000')
+  }
+</script>
+</html>

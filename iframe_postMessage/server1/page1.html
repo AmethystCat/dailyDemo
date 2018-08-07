@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>page 1</title>
+</head>
+<body>
+  我是page 1，我嵌入了page 2
+  <iframe src="http://localhost:3001/page2.html" frameborder="0"></iframe>
+</body>
+<script>
+  window.addEventListener('message', function(eventMessage) {
+    console.log(this);
+    console.log('我是page1:', eventMessage);
+  }, false)
+</script>
+</html>
