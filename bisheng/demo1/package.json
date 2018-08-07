@@ -1,0 +1,19 @@
+{
+  "name": "bisheng-demo1",
+  "version": "1.0.0",
+  "description": "bisheng practice",
+  "main": "index.js",
+  "scripts": {
+    "start": "bisheng start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bisheng"
+  ],
+  "author": "hc",
+  "license": "ISC",
+  "dependencies": {
+    "bisheng": "^0.29.0",
+    "bisheng-theme-one": "^0.2.35"
+  }
+}
