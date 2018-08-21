@@ -1,6 +1,6 @@
 ---
 title: Hello world!
-publishDate: 2016-05-05
+publishDate: 2016-05-06
 tags:
   - test
 ---
@@ -15,4 +15,9 @@ Hello world!
 (function() {
   console.log('Hello world');
 })();
+```
+
+```jsx
+const A = () => <i>Hello react</i>;
+ReactDOM.render(<A />, mountNode);
 ```

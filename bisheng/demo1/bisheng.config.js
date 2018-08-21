@@ -1,7 +1,7 @@
 module.exports = {
   source: './posts',
   output: './_site',
-  theme: 'bisheng-theme-one',
+  theme: './bisheng-theme-one/src',
   themeConfig: {
     home: '/',
     siteName: 'One',
