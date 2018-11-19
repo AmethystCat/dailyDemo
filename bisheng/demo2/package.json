@@ -11,7 +11,6 @@
   "author": "hc",
   "license": "ISC",
   "devDependencies": {
-    "antd": "^3.8.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -22,14 +21,16 @@
     "bisheng-plugin-antd": "^0.16.5",
     "bisheng-plugin-react": "^0.6.3",
     "eslint-loader": "^2.1.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-router": "^4.3.1",
     "webpack": "^4.17.1",
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "antd": "^3.8.2",
     "bisheng-plugin-description": "^0.1.4",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   }
 }

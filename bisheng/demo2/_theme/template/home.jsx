@@ -1,6 +1,5 @@
 import React from 'react';
-import Layout from './layout';
 
-const Home = () => <Layout>hello hc</Layout>;
+const Home = () => <h2>hello hc [预留的静态网站的入口]</h2>;
 
 export default Home;
