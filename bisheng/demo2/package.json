@@ -4,8 +4,9 @@
   "description": "react components with bisheng",
   "main": "lib/index.js",
   "scripts": {
-    "start": "bisheng start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run npm-build && bisheng start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm-build": "rm -rf lib && babel components -d lib"
   },
   "author": "hc",
   "license": "ISC",
@@ -20,11 +21,15 @@
     "bisheng": "^0.28.0",
     "bisheng-plugin-antd": "^0.16.5",
     "bisheng-plugin-react": "^0.6.3",
+    "eslint-loader": "^2.1.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router": "^4.3.1",
     "webpack": "^4.17.1",
-    "webpack-dev-server": "^3.1.5",
-    "eslint-loader": "^2.1.0"
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "bisheng-plugin-description": "^0.1.4",
+    "prop-types": "^15.6.2"
   }
 }
