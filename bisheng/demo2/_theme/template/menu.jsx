@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link } from 'bisheng/router';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
