@@ -1,5 +1,5 @@
 ---
-title: 可加减的输入框
+title: NumberInput 加减输入框
 publishDate: 2018-11-19
 tags:
   - react component

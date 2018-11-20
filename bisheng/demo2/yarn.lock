@@ -1544,10 +1544,10 @@ binary-extensions@^1.0.0:
   resolved "http://registry.npm.taobao.org/binary-extensions/download/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
   integrity sha1-RqoXUftqL5PuXmibsQh9SxTGwgU=
 
-bisheng-plugin-antd@^0.16.5:
-  version "0.16.5"
-  resolved "http://registry.npm.taobao.org/bisheng-plugin-antd/download/bisheng-plugin-antd-0.16.5.tgz#7a6f61697479bf66268069fc5ba2bb2719ab1b18"
-  integrity sha1-em9haXR5v2YmgGn8W6K7JxmrGxg=
+bisheng-plugin-antd@^0.17.0:
+  version "0.17.0"
+  resolved "http://registry.npm.taobao.org/bisheng-plugin-antd/download/bisheng-plugin-antd-0.17.0.tgz#8dc11b684729397021130d9022a9ec2f30ec828b"
+  integrity sha1-jcEbaEcpOXAhEw2QIqnsLzDsgos=
   dependencies:
     antd latest
     babel-core "^6.9.1"

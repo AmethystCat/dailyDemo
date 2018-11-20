@@ -7,8 +7,9 @@ module.exports = {
     return nodePath.endsWith('/demo');
   },
   plugins: [
-    path.join(__dirname, '../', 'node_modules', 'bisheng-plugin-react?lang=jsx'),
-    path.join(__dirname, '../', 'node_modules', 'bisheng-plugin-description'),
+    'bisheng-plugin-react?lang=__react',
+    'bisheng-plugin-description',
+    'bisheng-plugin-antd',
   ],
   routes: [
     {
@@ -32,6 +33,7 @@ module.exports = {
       return {
         meta: markdownData.meta,
         description: markdownData.description,
+        markdownData,
       };
     },
   },

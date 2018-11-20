@@ -18,7 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bisheng": "^0.28.0",
-    "bisheng-plugin-antd": "^0.16.5",
+    "bisheng-plugin-antd": "^0.17.0",
     "bisheng-plugin-react": "^0.6.3",
     "eslint-loader": "^2.1.0",
     "webpack": "^4.17.1",
