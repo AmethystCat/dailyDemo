@@ -26,13 +26,19 @@ module.exports = {
     },
   ],
   pick: {
-    posts(markdownData) {
-      console.log(111111, markdownData);
+    components(markdownData) {
+      const { filename } = markdownData.meta;
+
+      if (!/^components/.test(filename) || /[/\\]demo$/.test(path.dirname(filename))) return;
       return {
         meta: markdownData.meta,
-        description: markdownData.description,
-        markdownData,
       };
     },
+    articles(markdownData) {
+      const { filename } = markdownData.meta;
+
+      if (!/^articles/.test(filename)) return;
+      return markdownData;
+    }
   },
 };

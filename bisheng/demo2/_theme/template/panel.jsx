@@ -20,7 +20,7 @@ class DocPanel extends React.PureComponent {
       <section className="doc-main">
         <Layout>
           <Sider theme="light" width="300">
-            <Menu data={data} currentRoute={params.name} md={picked.posts} />
+            <Menu data={data} currentRoute={params.name} md={picked} />
           </Sider>
           <Content>
             <section className="doc-content">
@@ -49,9 +49,8 @@ export default collect(async nextProps => {
     ? pageData()
     : pageData.index();
   
-  console.log(pageData);
   if (!nextProps.pageData) {
-    throw 404;
+    throw 404; // 将会重定向NotFound路由
   }
   if (demosFetcher) {
     const [pageDataRes, demos] = await Promise.all([pageDataPromise, demosFetcher()]);
