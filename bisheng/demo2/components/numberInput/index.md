@@ -6,11 +6,3 @@ tags:
 ---
 
 ## antd自定义表单组件：可加减的输入框
-
----
-
-```jsx
-import { NumberInput } from 'gateway-lib';
-
-ReactDOM.render(<NumberInput />, mountNode);
-```

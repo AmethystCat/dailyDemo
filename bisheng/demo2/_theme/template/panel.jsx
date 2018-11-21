@@ -40,9 +40,23 @@ class DocPanel extends React.PureComponent {
 
 export default collect(async nextProps => {
   console.log('collect argument-------', nextProps);
+  const { pathname } = nextProps.location;
+  const pageDataPath = pathname.split('/');
+  const pageData = nextProps.utils.get(nextProps.data, pageDataPath);
+  // 必须是...pageDataPath， 否则demosFetcher为undefine，不知道为何，以后再研究
+  const demosFetcher = nextProps.utils.get(nextProps.data, [...pageDataPath, 'demo']);
+  const pageDataPromise = typeof pageData === 'function'
+    ? pageData()
+    : pageData.index();
+  
+  console.log(pageData);
   if (!nextProps.pageData) {
     throw 404;
   }
-  const pageData = await nextProps.pageData();
-  return { pageData };
+  if (demosFetcher) {
+    const [pageDataRes, demos] = await Promise.all([pageDataPromise, demosFetcher()]);
+    return { pageData: pageDataRes, demos };
+  }
+  
+  return { pageData: await pageDataPromise };
 })(DocPanel);

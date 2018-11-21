@@ -18,12 +18,10 @@ module.exports = {
     },
     {
       path: '/articles/:name',
-      dataPath: '/:name',
       component: './template/panel'
     },
     {
       path: '/components/:name',
-      dataPath: '/:name/demo',
       component: './template/panel'
     },
   ],
