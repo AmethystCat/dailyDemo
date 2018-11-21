@@ -11,7 +11,7 @@ const SubMenu = Menu.SubMenu;
 const getLink = meta => {
   const { filename, title } = meta;
   const link = `/${filename.slice(0, filename.indexOf('index.md') -1)}`;
-  // console.log(link);
+  
   return <Link to={link} >{title}</Link>
 };
 
