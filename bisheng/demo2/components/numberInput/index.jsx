@@ -3,6 +3,10 @@ import { Input, Icon } from 'antd';
 import PropTypes from 'prop-types';
 
 const DEFAULT_VALUE = 0;
+const DEFAULT_ACCURACY = 1;
+const OP_MINUS = 'onMinus';
+const OP_PLUS = 'onPlus';
+
 export default class NumberInput extends React.PureComponent {
   static propTypes = {
     onCustomChangeHandler: PropTypes.func,
@@ -10,6 +14,7 @@ export default class NumberInput extends React.PureComponent {
     onMinus: PropTypes.func,
     onPlus: PropTypes.func,
     width: PropTypes.number,
+    accuracy: PropTypes.number //默认加减的精度
   };
 
   static defaultProps = {
@@ -17,6 +22,8 @@ export default class NumberInput extends React.PureComponent {
     onMinus: () => {},
     onPlus: () => {},
     onChange: () => {},
+    accuracy: 1,
+    width: 120
   };
 
   static getDerivedStateFromProps(nextProps) {
@@ -31,28 +38,43 @@ export default class NumberInput extends React.PureComponent {
 
   state = {
     value: this.props.value || DEFAULT_VALUE,
-    width: 120,
+    accuracy: this.props.accuracy || DEFAULT_ACCURACY
   };
-  
-  onChangeHandler = (e) => {
+
+  onChangeHandler = e => {
     // e => event object
     const { onChange, onCustomChangeHandler } = this.props;
-    
-    onChange(e.target.value);
-    onCustomChangeHandler(e.target.value);
-  }
+    const value = e.target.value;
+
+    if (value !== '-' && value && isNaN(Number(value))) return;
+
+    this.setState({ value }, () => {
+      const { value } = this.state;
+      onChange(value);
+      onCustomChangeHandler(value);
+    });
+  };
+
+  operate = operate => {
+    const { accuracy, value } = this.state;
+    const newValue = operate === OP_MINUS ? Number(value) - accuracy : Number(value) + accuracy;
+
+    this.setState({ value: newValue }, () => {
+      this.props[operate](this.state.value);
+    });
+  };
 
   render() {
-    const { onChangeHandler, onMinus, onPlus } = this.props;
-    const { val } = this.state;
+    const { width } = this.props;
+    const { value } = this.state;
 
     return (
       <Input
-        value={val}
-        onChange={onChangeHandler}
-        addonBefore={<Icon type="minus" onClick={onMinus} />}
-        addonAfter={<Icon type="plus" onClick={onPlus} />}
-        style={{ width: 120 }}
+        value={value}
+        onChange={this.onChangeHandler}
+        addonBefore={<Icon type="minus" onClick={() => this.operate(OP_MINUS)} />}
+        addonAfter={<Icon type="plus" onClick={() => this.operate(OP_PLUS)} />}
+        style={{ width, textAlign: 'center' }}
       />
     );
   }

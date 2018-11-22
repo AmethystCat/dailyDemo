@@ -13,7 +13,7 @@ const DemoItem = props => {
       <h3 className="demo-title">{meta.title}</h3>
       <section className="demo-desc">{content}</section>
       <Row gutter={16}>
-        <Col span={12} className="demo-code">
+        <Col span={24} className="demo-code">
           <CodePreview>{props.utils.toReactComponent(highlightedCode)}</CodePreview>
         </Col>
       </Row>
