@@ -19,14 +19,17 @@ const DemoItem = props => {
           <CodePreview>{props.utils.toReactComponent(highlightedCode)}</CodePreview>
         </Col>
       </Row>
+      <Row>
       {highlightedStyle ? (
-        <div key="style" className="highlight">
-          <pre>
-            <code className="css" dangerouslySetInnerHTML={{ __html: highlightedStyle }} />
-          </pre>
-        </div>
+        <Col>
+          <div key="style" className="highlight">
+            <pre>
+              <code className="css" dangerouslySetInnerHTML={{ __html: highlightedStyle }} />
+            </pre>
+          </div>
+        </Col>
       ) : null}
-      <Row />
+      </Row>
       <Row>
         <Col>eg: {preview(React, ReactDOM)}</Col>
       </Row>
