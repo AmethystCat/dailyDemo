@@ -12,3 +12,9 @@ const onChange = (value) => console.log(value);
 
 ReactDOM.render(<NumberInput {...{ onMinus, onPlus, onChange }} />, mountNode);
 ```
+
+```css
+.ant-input {
+  text-align: center;
+}
+```
