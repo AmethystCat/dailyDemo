@@ -1,6 +1,7 @@
 ---
 title: NumberInput 加减输入框
 publishDate: 2018-11-19
+cols: 1
 tags:
   - react component
 ---

@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 // TODO
 // Link引用方式，参照antd项目源码中的引用，否则会有问题，后续补充理由
-import { Link } from 'bisheng/router'; 
+import { Link } from 'bisheng/router';
 
 // const KEY_ARTICLES = 'articles';
 const KEY_COMPONENTS = 'components';
@@ -10,9 +10,9 @@ const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
 const getLink = meta => {
   const { filename, title } = meta;
-  const link = `/${filename.slice(0, filename.indexOf('index.md') -1)}`;
-  
-  return <Link to={link} >{title}</Link>
+  const link = `/${filename.slice(0, filename.indexOf('index.md') - 1)}`;
+
+  return <Link to={link}>{title}</Link>;
 };
 
 const DocMenu = ({ data = {}, currentRoute, md = {} }) => {
@@ -33,7 +33,7 @@ const DocMenu = ({ data = {}, currentRoute, md = {} }) => {
   // console.log(menuMap);
 
   return (
-    <Menu defaultSelectedKeys={defaultSelectedKey} defaultOpenKeys={['sub1']} mode="inline">
+    <Menu defaultSelectedKeys={defaultSelectedKey} defaultOpenKeys={['sub1']} mode="inline" className="doc-sub-menu">
       <SubMenu key="sub1" title="GatewayLib Components">
         {demoKeys.map(k => {
           return <MenuItem key={k}>{getLink(menuMap[k])}</MenuItem>;
