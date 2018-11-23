@@ -28,8 +28,8 @@
     "antd": "^3.8.2",
     "bisheng-plugin-description": "^0.1.4",
     "prop-types": "^15.6.2",
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1"
   }
