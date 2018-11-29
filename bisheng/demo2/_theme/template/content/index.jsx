@@ -5,7 +5,7 @@ import DemoItem from './demoItem';
 export default class DemoDoc extends React.PureComponent {
   render() {
     const { pageData, utils, demos } = this.props;
-    const desc = utils.toReactComponent(pageData.description);
+    const { description, api } = pageData;
     const demoKeys = Object.keys(demos);
     // 判断是否是单列
     const isSingleCol = pageData.meta.cols === 1;
@@ -24,7 +24,8 @@ export default class DemoDoc extends React.PureComponent {
           <Col span={isSingleCol ? 24 : 12}>{leftColChildren}</Col>
           {isSingleCol ? null : <Col span={12}>{rightColChildren}</Col>}
         </Row>
-        <div>{desc}</div>
+        <div>{description && utils.toReactComponent(description)}</div>
+        <div className="markdown api-container">{api && utils.toReactComponent(api)}</div>
       </section>
     );
   }

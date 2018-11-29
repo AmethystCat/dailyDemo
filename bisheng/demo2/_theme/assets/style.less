@@ -1,0 +1,83 @@
+#react-content,
+.doc-main,
+.ant-layout,
+.ant-layout-sider,
+.ant-layout-content {
+  height: 100%;
+  background-color: #fff;
+}
+
+.doc-content {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.doc-sub-menu {
+  height: 100%;
+}
+
+.demo-item-w {
+  @bc: #ebedf0;
+
+  position: relative;
+  border: 1px solid @bc;
+  border-bottom: none;
+  margin: 0 0 15px;
+  color: rgba(0, 0, 0, 0.65);
+  transition: all 0.2s;
+
+  .item {
+    padding: 22px 24px 25px;
+    border-bottom: 1px solid @bc;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .demo-desc {
+    .desc-title {
+      font-weight: 500;
+      position: absolute;
+      top: -14px;
+      left: 14px;
+      padding: 0 10px;
+      background-color: #fff;
+      color: #314659;
+    }
+
+    .desc-content {
+      font-size: 14px;
+    }
+  }
+
+  .code-expand-icon {
+    position: absolute;
+    right: 16px;
+    bottom: 13px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+
+    &-hide {
+      display: none;
+    }
+
+    &-show {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  pre {
+    code {
+      padding: 0;
+      border: none;
+    }
+  }
+}
