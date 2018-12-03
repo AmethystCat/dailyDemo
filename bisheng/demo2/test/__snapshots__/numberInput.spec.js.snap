@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumberInput UT:  snapshot 1`] = `
+<span
+  className="ant-input-group-wrapper"
+  style={
+    Object {
+      "textAlign": "center",
+      "width": 120,
+    }
+  }
+>
+  <span
+    className="ant-input-wrapper ant-input-group"
+  >
+    <span
+      className="ant-input-group-addon"
+    >
+      <i
+        className="anticon anticon-minus"
+        onClick={[Function]}
+      />
+    </span>
+    <input
+      className="ant-input"
+      disabled={false}
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      style={null}
+      type="text"
+      value=""
+    />
+    <span
+      className="ant-input-group-addon"
+    >
+      <i
+        className="anticon anticon-plus"
+        onClick={[Function]}
+      />
+    </span>
+  </span>
+</span>
+`;
