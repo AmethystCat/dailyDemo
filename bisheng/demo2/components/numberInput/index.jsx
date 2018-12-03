@@ -19,7 +19,7 @@ export default class NumberInput extends React.PureComponent {
 
   static defaultProps = {
     defaultValue: '',
-    accuracy: 1,
+    accuracy: DEFAULT_ACCURACY,
     width: 120,
     onMinus: () => {},
     onPlus: () => {},
@@ -28,8 +28,8 @@ export default class NumberInput extends React.PureComponent {
 
   static getDerivedStateFromProps(nextProps) {
     // Should be a controlled components
+    console.log(nextProps);
     if ('value' in nextProps) {
-      console.log(nextProps);
       return {
         ...(nextProps.value || DEFAULT_VALUE)
       };
@@ -39,7 +39,7 @@ export default class NumberInput extends React.PureComponent {
 
   state = {
     value: this.props.value,
-    accuracy: this.props.accuracy || DEFAULT_ACCURACY
+    accuracy: this.props.accuracy
   };
 
   onChangeHandler = e => {

@@ -46,8 +46,8 @@ var NumberInput = function (_React$PureComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NumberInput.__proto__ || Object.getPrototypeOf(NumberInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      value: _this.props.value || DEFAULT_VALUE,
-      accuracy: _this.props.accuracy || DEFAULT_ACCURACY
+      value: _this.props.value,
+      accuracy: _this.props.accuracy
     }, _this.onChangeHandler = function (e) {
       // e => event object
       var onChange = _this.props.onChange;
@@ -102,6 +102,7 @@ var NumberInput = function (_React$PureComponent) {
     key: 'getDerivedStateFromProps',
     value: function getDerivedStateFromProps(nextProps) {
       // Should be a controlled components
+      console.log(nextProps);
       if ('value' in nextProps) {
         return _extends({}, nextProps.value || DEFAULT_VALUE);
       }
@@ -122,7 +123,7 @@ NumberInput.propTypes = {
 };
 NumberInput.defaultProps = {
   defaultValue: '',
-  accuracy: 1,
+  accuracy: DEFAULT_ACCURACY,
   width: 120,
   onMinus: function onMinus() {},
   onPlus: function onPlus() {},

@@ -12,7 +12,7 @@ const onMinus = (value) => console.log(value);
 const onPlus = (value) => console.log(value);
 const onChange = (value) => console.log(value);
 
-ReactDOM.render(<NumberInput {...{ onMinus, onPlus, onChange }} />, mountNode);
+ReactDOM.render(<NumberInput {...{ onMinus, onPlus, onChange }} defaultValue="2" />, mountNode);
 ```
 
 ```css
