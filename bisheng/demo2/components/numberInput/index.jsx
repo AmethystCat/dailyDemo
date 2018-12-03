@@ -9,7 +9,7 @@ const OP_PLUS = 'onPlus';
 
 export default class NumberInput extends React.PureComponent {
   static propTypes = {
-    onCustomChangeHandler: PropTypes.func,
+    defaultValue: PropTypes.string,
     onChange: PropTypes.func,
     onMinus: PropTypes.func,
     onPlus: PropTypes.func,
@@ -18,17 +18,18 @@ export default class NumberInput extends React.PureComponent {
   };
 
   static defaultProps = {
-    onCustomChangeHandler: () => {},
+    defaultValue: '',
+    accuracy: 1,
+    width: 120,
     onMinus: () => {},
     onPlus: () => {},
     onChange: () => {},
-    accuracy: 1,
-    width: 120
   };
 
   static getDerivedStateFromProps(nextProps) {
     // Should be a controlled components
     if ('value' in nextProps) {
+      console.log(nextProps);
       return {
         ...(nextProps.value || DEFAULT_VALUE)
       };
@@ -37,13 +38,13 @@ export default class NumberInput extends React.PureComponent {
   }
 
   state = {
-    value: this.props.value || DEFAULT_VALUE,
+    value: this.props.value,
     accuracy: this.props.accuracy || DEFAULT_ACCURACY
   };
 
   onChangeHandler = e => {
     // e => event object
-    const { onChange, onCustomChangeHandler } = this.props;
+    const { onChange } = this.props;
     const value = e.target.value;
 
     if (value !== '-' && value && isNaN(Number(value))) return;
@@ -51,7 +52,6 @@ export default class NumberInput extends React.PureComponent {
     this.setState({ value }, () => {
       const { value } = this.state;
       onChange(value);
-      onCustomChangeHandler(value);
     });
   };
 
@@ -65,11 +65,12 @@ export default class NumberInput extends React.PureComponent {
   };
 
   render() {
-    const { width } = this.props;
+    const { width, defaultValue } = this.props;
     const { value } = this.state;
 
     return (
       <Input
+        defaultValue={defaultValue}
         value={value}
         onChange={this.onChangeHandler}
         addonBefore={<Icon type="minus" onClick={() => this.operate(OP_MINUS)} />}

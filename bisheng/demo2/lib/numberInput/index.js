@@ -50,9 +50,7 @@ var NumberInput = function (_React$PureComponent) {
       accuracy: _this.props.accuracy || DEFAULT_ACCURACY
     }, _this.onChangeHandler = function (e) {
       // e => event object
-      var _this$props = _this.props,
-          onChange = _this$props.onChange,
-          onCustomChangeHandler = _this$props.onCustomChangeHandler;
+      var onChange = _this.props.onChange;
 
       var value = e.target.value;
 
@@ -62,7 +60,6 @@ var NumberInput = function (_React$PureComponent) {
         var value = _this.state.value;
 
         onChange(value);
-        onCustomChangeHandler(value);
       });
     }, _this.operate = function (operate) {
       var _this$state = _this.state,
@@ -82,11 +79,14 @@ var NumberInput = function (_React$PureComponent) {
     value: function render() {
       var _this2 = this;
 
-      var width = this.props.width;
+      var _props = this.props,
+          width = _props.width,
+          defaultValue = _props.defaultValue;
       var value = this.state.value;
 
 
       return _react2.default.createElement(_antd.Input, {
+        defaultValue: defaultValue,
         value: value,
         onChange: this.onChangeHandler,
         addonBefore: _react2.default.createElement(_antd.Icon, { type: 'minus', onClick: function onClick() {
@@ -113,7 +113,7 @@ var NumberInput = function (_React$PureComponent) {
 }(_react2.default.PureComponent);
 
 NumberInput.propTypes = {
-  onCustomChangeHandler: _propTypes2.default.func,
+  defaultValue: _propTypes2.default.string,
   onChange: _propTypes2.default.func,
   onMinus: _propTypes2.default.func,
   onPlus: _propTypes2.default.func,
@@ -121,11 +121,11 @@ NumberInput.propTypes = {
   accuracy: _propTypes2.default.number //默认加减的精度
 };
 NumberInput.defaultProps = {
-  onCustomChangeHandler: function onCustomChangeHandler() {},
+  defaultValue: '',
+  accuracy: 1,
+  width: 120,
   onMinus: function onMinus() {},
   onPlus: function onPlus() {},
-  onChange: function onChange() {},
-  accuracy: 1,
-  width: 120
+  onChange: function onChange() {}
 };
 exports.default = NumberInput;
