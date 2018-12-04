@@ -3,16 +3,15 @@ title: 基本用法
 order: 2
 ---
 
-吧啦吧啦吧啦
+组件的基本用法。
 
 ```jsx
 import { NumberInput } from 'gateway-lib';
 
-const onMinus = (value) => console.log(value);
-const onPlus = (value) => console.log(value);
 const onChange = (value) => console.log(value);
+const defaultValue = '2';
 
-ReactDOM.render(<NumberInput {...{ onMinus, onPlus, onChange }} defaultValue="2" />, mountNode);
+ReactDOM.render(<NumberInput {...{ onChange, defaultValue }} />, mountNode);
 ```
 
 ```css

@@ -28,7 +28,7 @@ exports[`NumberInput UT:  snapshot 1`] = `
       onKeyDown={[Function]}
       style={null}
       type="text"
-      value=""
+      value="0"
     />
     <span
       className="ant-input-group-addon"

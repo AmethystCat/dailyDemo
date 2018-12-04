@@ -2,45 +2,47 @@ import React from 'react';
 import { Input, Icon } from 'antd';
 import PropTypes from 'prop-types';
 
-const DEFAULT_VALUE = 0;
+const DEFAULT_VALUE = '0';
 const DEFAULT_ACCURACY = 1;
-const OP_MINUS = 'onMinus';
-const OP_PLUS = 'onPlus';
+const OP_MINUS = 'MINUS';
+const OP_PLUS = 'PLUS';
 
 export default class NumberInput extends React.PureComponent {
   static propTypes = {
     defaultValue: PropTypes.string,
+    value: PropTypes.string,
     onChange: PropTypes.func,
-    onMinus: PropTypes.func,
-    onPlus: PropTypes.func,
+    interceptor: PropTypes.func,
     width: PropTypes.number,
     accuracy: PropTypes.number //默认加减的精度
   };
 
   static defaultProps = {
-    defaultValue: '',
     accuracy: DEFAULT_ACCURACY,
     width: 120,
-    onMinus: () => {},
-    onPlus: () => {},
     onChange: () => {},
+    interceptor: () => true
   };
 
   static getDerivedStateFromProps(nextProps) {
     // Should be a controlled components
-    console.log(nextProps);
     if ('value' in nextProps) {
       return {
-        ...(nextProps.value || DEFAULT_VALUE)
+        value: nextProps.value,
       };
     }
     return null;
   }
 
-  state = {
-    value: this.props.value,
-    accuracy: this.props.accuracy
-  };
+  constructor(props) {
+    super(props);
+
+    const { value, defaultValue, accuracy } = this.props;
+    this.state = {
+      value: value || defaultValue || DEFAULT_VALUE,
+      accuracy
+    };
+  }
 
   onChangeHandler = e => {
     // e => event object
@@ -57,20 +59,26 @@ export default class NumberInput extends React.PureComponent {
 
   operate = operate => {
     const { accuracy, value } = this.state;
-    const newValue = operate === OP_MINUS ? Number(value) - accuracy : Number(value) + accuracy;
+    const newValue = (operate === OP_MINUS)
+      ? `${Number(value) - Number(accuracy)}` 
+      : `${Number(value) + Number(accuracy)}`;
+    const { onChange, interceptor } = this.props;
+
+    // 这里设置一道拦截器，加减改变状态前，可以停止修改。
+    if (!interceptor(value, newValue, operate)) return false;
 
     this.setState({ value: newValue }, () => {
-      this.props[operate](this.state.value);
+      // this.props[operate](this.state.value);
+      onChange(this.state.value);
     });
   };
 
   render() {
-    const { width, defaultValue } = this.props;
+    const { width } = this.props;
     const { value } = this.state;
 
     return (
       <Input
-        defaultValue={defaultValue}
         value={value}
         onChange={this.onChangeHandler}
         addonBefore={<Icon type="minus" onClick={() => this.operate(OP_MINUS)} />}
