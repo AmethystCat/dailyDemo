@@ -38,14 +38,22 @@ class Demo extends React.Component {
       isPressed: false,
       originalPosOfLastPressed: 0,
       order: range(itemsCount),
+      v: 1
     };
   };
 
   componentDidMount() {
-    window.addEventListener('touchmove', this.handleTouchMove);
-    window.addEventListener('touchend', this.handleMouseUp);
-    window.addEventListener('mousemove', this.handleMouseMove);
-    window.addEventListener('mouseup', this.handleMouseUp);
+    // window.addEventListener('touchmove', this.handleTouchMove);
+    // window.addEventListener('touchend', this.handleMouseUp);
+    // window.addEventListener('mousemove', this.handleMouseMove);
+    // window.addEventListener('mouseup', this.handleMouseUp);
+
+    this.setState({v: 2});
+    console.log(this.state.v);
+
+    this.setState({v: 3}, () => {
+      console.log(this.state.v);
+    })
   };
 
   handleTouchStart = (key, pressLocation, e) => {
