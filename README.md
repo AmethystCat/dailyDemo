@@ -11,6 +11,7 @@
 * antd 省市区联动选择.
 * antd component jest demo (官方parcel antd 配置).
 * web worker: react, parse excel file
+* a css loading
 
 
 ## todo
