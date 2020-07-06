@@ -1,0 +1,45 @@
+.section-img {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* 宽高度自己调整哦 */
+.img {
+  position: relative;
+  width: 32vw;
+  height: 32vw;
+  margin-bottom: 2vw;
+  overflow: hidden;
+}
+
+.mask {
+  font-size: 30px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background: rgba(0, 0, 0, .5);
+  color: #fff;
+}
+
+.img img {
+  height: 100%;
+}
+
+.section-carousel {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: #000;
+}
+.section-carousel .am-carousel{
+  margin-top: 50%;
+}
