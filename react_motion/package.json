@@ -18,7 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "lodash.range": "^3.2.0",
-    "parcel-bundler": "^1.5.1"
+    "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "lodash": "^4.17.5",
